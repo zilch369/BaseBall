@@ -40,24 +40,25 @@ class GameTest {
 
     @Test
     void returnSolveResultIfMatchedNumber() {
-        game.question = "123"; // Assuming the game has a method to set the question
-        GuessResult result = game.guess("123");
-        // Assuming the game has a method to check if the guess is correct
-        assertThat(result).isNotNull();
-        assertThat(result.isSolved()).isEqualTo(true);
-        assertThat(result.getStrikes()).isEqualTo(3);
-        assertThat(result.getBalls()).isEqualTo(0);
+        generateQuestion("123");
+        assertMacthedNumber(game.guess("123"), true, 3, 0);
+    }
+
+    private void generateQuestion(String questionNumber) {
+        game.question = questionNumber; // Assuming the game has a method to set the question
     }
 
     @Test
     void returnSolveResultIfUnMatchedNumber() {
-        game.question = "123"; // Assuming the game has a method to set the question
-        GuessResult result = game.guess("456");
-        // Assuming the game has a method to check if the guess is correct
+        generateQuestion("123");
+        assertMacthedNumber(game.guess("456"), false, 0, 0);
+    }
+
+    private static void assertMacthedNumber(GuessResult result, boolean solved, int strikes, int balls) {
         assertThat(result).isNotNull();
-        assertThat(result.isSolved()).isEqualTo(false);
-        assertThat(result.getStrikes()).isEqualTo(0);
-        assertThat(result.getBalls()).isEqualTo(0);
+        assertThat(result.isSolved()).isEqualTo(solved);
+        assertThat(result.getStrikes()).isEqualTo(strikes);
+        assertThat(result.getBalls()).isEqualTo(balls);
     }
 
 }
