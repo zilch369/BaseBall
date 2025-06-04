@@ -4,11 +4,11 @@ public class Game {
 
     public GuessResult guess(String guessNumber) {
         assertIllegalArgument(guessNumber);
-        if (guessNumber.equals(guessNumber)) {
+        if (guessNumber.equals(question)) {
             return new GuessResult(true, 3, 0);
         }
         else {
-            return null;
+            return new GuessResult(false, 0,0);
         }
     }
 
