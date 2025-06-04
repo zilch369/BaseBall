@@ -10,24 +10,9 @@ public class Game {
         if (guessNumber.equals(question)) {
             return new GuessResult(true, 3, 0);
         }
-        if (is2S0B(guessNumber)) {
-            return new GuessResult(false,2,0);
-        }
-        if (is1S2B(guessNumber)) {
-            return new GuessResult(false, 1, 2);
-        }
-        return new GuessResult(false, 0,0);
+        countSB(guessNumber);
+        return new GuessResult(false, strikes, balls);
 
-    }
-
-    private boolean is2S0B(String questionNumber) {
-        countSB(questionNumber);
-        return strikes == 2 && balls == 0;
-    }
-
-    private boolean is1S2B(String questionNumber) {
-        countSB(questionNumber);
-        return strikes == 1 && balls == 2;
     }
 
     private void countSB(String questionNumber) {
