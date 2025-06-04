@@ -61,4 +61,20 @@ class GameTest {
         assertThat(result.getBalls()).isEqualTo(balls);
     }
 
+    @Test
+    void returnSolveResultIfUnMatchedNumber2S0B() {
+        generateQuestion("123");
+        assertMacthedNumber(game.guess("126"), false, 2, 0);
+        assertMacthedNumber(game.guess("163"), false, 2, 0);
+        assertMacthedNumber(game.guess("623"), false, 2, 0);
+    }
+
+    @Test
+    void returnSolveResultIfUnMatchedNumber1S2B() {
+        generateQuestion("123");
+        assertMacthedNumber(game.guess("132"), false, 1, 2);
+        assertMacthedNumber(game.guess("321"), false, 1, 2);
+        assertMacthedNumber(game.guess("213"), false, 1, 2);
+    }
+
 }
